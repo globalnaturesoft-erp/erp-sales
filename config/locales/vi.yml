@@ -10,7 +10,7 @@ vi:
       backend:
         orders:
           index:
-            orders: "Đơn hàng"
+            orders: "Đơn bán hàng"
             order_code: "Mã đơn hàng"
             order_date: "Ngày đặt hàng"
             customer: "Khách hàng"
