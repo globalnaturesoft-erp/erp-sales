@@ -8,8 +8,8 @@ vi:
   erp:
     sales:
       backend:
-        orders:
-          index:
+        sales:
+          sales_orders:
             orders: "Đơn bán hàng"
             order_code: "Mã đơn hàng"
             order_date: "Ngày đặt hàng"
@@ -35,7 +35,7 @@ vi:
             unarchive: "Hiện đơn hàng"
             delete: "Xóa đơn hàng"
             delete_confirm: "Bạn chắc chắn muốn xóa đơn hàng này?"
-          list:
+          sales_orders_listing:
             order_code: "Mã đơn hàng"
             order_date: "Ngày đặt hàng"
             customer: "Khách hàng"
@@ -49,7 +49,7 @@ vi:
             actions: "Thao tác"
             draft: "Lưu tạm"
             confirmed: "Đã xác nhận"
-            cancelled: "Bị hủy"
+            cancelled: "Đã hủy"
             paid: "Đã thanh toán"
             overdue: "Quá hạn thanh toán"
             debt: "Công nợ"
@@ -60,8 +60,15 @@ vi:
             unarchive: "Hiện đơn hàng"
             view: "Xem đơn hàng"
             edit: "Chỉnh sửa"
-            pay: "Trả lại tiền KH"
-            receive: "Thu tiền KH"
+            pay_kh: "Trả lại tiền KH"
+            receive_kh: "Thu tiền KH"
             delete: "Xóa đơn hàng"
             delete_confirm: "Bạn chắc chắn muốn xóa đơn hàng này?"
             payment_record: "Phiếu thanh toán"
+            no_matching_records_found: "Danh sách hiện đang trống"
+            re_opened: "Mở lại đơn hàng"
+            set_confirm: "Xác nhận đơn hàng"
+            set_cancel: "Hủy đơn hàng"
+            re_opened_confirm: "Bạn đồng ý mở lại đơn hàng?"
+            set_confirm_confirm: "Bạn đồng ý xác nhận đơn hàng?"
+            set_cancel_confirm: "Bạn đồng ý hủy đơn hàng?"
