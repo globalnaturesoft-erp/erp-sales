@@ -47,6 +47,21 @@
             divider: true
         },
         {
+            text: '<i class="fa fa-check"></i> '+t('.set_confirm'),
+            url: erp_orders.set_confirm_all_backend_orders_path,
+            data_method: 'PUT',
+            data_confirm: t('.set_confirm_confirm')
+        },
+        {
+            text: '<i class="fa fa-ban"></i> '+t('.set_cancel'),
+            url: erp_orders.set_cancel_all_backend_orders_path,
+            data_method: 'PUT',
+            data_confirm: t('.set_cancel_confirm')
+        },
+        {
+            divider: true
+        },
+        {
             text: '<i class="fa fa-trash"></i> '+t('.delete'),
             url: erp_orders.delete_all_backend_orders_path,
             data_method: 'DELETE',
