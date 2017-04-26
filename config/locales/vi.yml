@@ -5,6 +5,7 @@ vi:
         sidebar:
           sale: "Bán hàng"
           orders: "Đơn hàng"
+          frontend_orders: "Đơn hàng Website"
   erp:
     sales:
       backend:
