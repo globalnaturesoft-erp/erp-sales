@@ -1,8 +1,8 @@
-<li class="nav-item <%= "active open" if ["erp/sales/backend/sales", "erp/orders/backend/frontend_orders"].include?(params[:controller]) %>">
+<li class="nav-item <%= "active open" if ["erp/sales/backend/sales"].include?(params[:controller]) %>">
     <a href="javascript:;" class="nav-link nav-toggle">
         <i class="fa fa-line-chart"></i>
         <span class="title"><%= t('.sale') %></span>
-        <% if ["erp/sales/backend/sales", "erp/orders/backend/frontend_orders"].include?(params[:controller]) %>
+        <% if ["erp/sales/backend/sales"].include?(params[:controller]) %>
             <span class="selected"></span>
             <span class="arrow open"></span>
         <% else %>
@@ -15,12 +15,5 @@
                 <span class="title"><%= t('.orders') %></span>
             </a>
         </li>
-        <% if Erp::Core.available?("online_store") %>
-            <li class="nav-item">
-                <a href="<%= erp_orders.backend_frontend_orders_path %>" class="nav-link">
-                    <span class="title"><%= t('.frontend_orders') %></span>
-                </a>
-            </li>
-        <% end %>
     </ul>
 </li>
