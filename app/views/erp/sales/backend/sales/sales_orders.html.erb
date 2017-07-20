@@ -13,6 +13,14 @@
     </div>
 <% end %>
 
+<% content_for :page_toolbar do %>
+    <%= erp_component('button/create', {
+        text: t('.create_customer_order'),
+        href: erp_orders.new_backend_order_path,
+        class: 'btn-noborder'
+    }) %>
+<% end %>
+
 <%= erp_datalist(
     url: erp_sales.backend_sales_orders_listing_path,
     keywords: [

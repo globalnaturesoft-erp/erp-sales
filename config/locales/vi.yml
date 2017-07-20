@@ -3,14 +3,15 @@ vi:
     erp:
       backend:
         sidebar:
-          sale: "Bán hàng"
-          orders: "Đơn hàng"
-          frontend_orders: "Đơn hàng Website"
+          sale: "BÁN HÀNG"
+          sale_orders: "Đơn bán hàng"
+          order_history: "Lịch sử đặt hàng"
   erp:
     sales:
       backend:
         sales:
           sales_orders:
+            create_customer_order: "Tạo đơn bán hàng"
             orders: "Đơn bán hàng"
             order_code: "Mã đơn hàng"
             order_date: "Ngày đặt hàng"
