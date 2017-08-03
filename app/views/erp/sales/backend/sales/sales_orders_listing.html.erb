@@ -5,13 +5,8 @@
                 <%= erp_datalist_check_all %>
             </th>
             <% if get_columns(params).include?("order_code") %>
-                <th>
+                <th width='11%'>
                     <%= t('.order_code') %>
-                </th>
-            <% end %>
-            <% if get_columns(params).include?("customer") %>
-                <th>
-                    <%= t('.customer') %>
                 </th>
             <% end %>
             <% if get_columns(params).include?("order_date") %>
@@ -19,9 +14,9 @@
                     <%= t('.order_date') %>
                 </th>
             <% end %>
-            <% if get_columns(params).include?("salesperson") %>
+            <% if get_columns(params).include?("customer") %>
                 <th>
-                    <%= t('.salesperson') %>
+                    <%= t('.customer') %>
                 </th>
             <% end %>
             <% if get_columns(params).include?("total") %>
@@ -44,8 +39,13 @@
                     <%= t('.status') %>
                 </th>
             <% end %>
+            <% if get_columns(params).include?("employee") %>
+                <th class="text-center">
+                    <%= t('.employee') %>
+                </th>
+            <% end %>
             <% if get_columns(params).include?("creator") %>
-                <th>
+                <th class="text-center">
                     <%= t('.creator') %>
                 </th>
             <% end %>
@@ -66,23 +66,20 @@
                 <% if get_columns(params).include?("order_code") %>
                 <td>
                     <i class="fa fa-plus expand tr-expand-button"></i>
-                    <strong><%= "#" + order.code %></strong>
+                    <strong><%= order.code %></strong>
                 </td>
-                <% end %>
-                <% if get_columns(params).include?("customer") %>
-                <td><%= order.customer_name %></td>
                 <% end %>
                 <% if get_columns(params).include?("order_date") %>
                 <td><%= format_date(order.order_date) %></td>
                 <% end %>
-                <% if get_columns(params).include?("salesperson") %>
-                <td><%= order.salesperson_name %></td>
+                <% if get_columns(params).include?("customer") %>
+                <td><%= order.customer_name %></td>
                 <% end %>
                 <% if get_columns(params).include?("total") %>
-                <td><%= order.total %></td>
+                <td><%= format_price(order.total) %></td>
                 <% end %>
                 <% if get_columns(params).include?("remain") %>
-                <td><%= order.remain_amount %></td>
+                <td><%= format_price(order.remain_amount) %></td>
                 <% end %>
                 <% if get_columns(params).include?("deadline") %>
                 <td><%= format_date(order.get_payment_deadline) %></td>
@@ -91,6 +88,13 @@
                 <td>
                     <%= status_label(order.status) %>
                     <%= status_label(order.cache_payment_status) %>
+                </td>
+                <% end %>
+                <% if get_columns(params).include?("employee") %>
+                <td>
+                    <%= erp_component('avatar', {
+                        user: order.employee
+                    }) %>
                 </td>
                 <% end %>
                 <% if get_columns(params).include?("creator") %>
