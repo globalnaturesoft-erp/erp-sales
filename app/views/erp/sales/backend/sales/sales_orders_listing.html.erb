@@ -59,7 +59,7 @@
     </thead>
     <tbody>
         <% @orders.each do |order| %>
-            <tr class="odd gradeX has-child-table" data-url="<%= erp_sales.backend_sales_order_details_path(id: order.id) %>">
+            <tr class="<%= 'blurred' if order.is_deleted? %> odd gradeX has-child-table" data-url="<%= erp_sales.backend_sales_order_details_path(id: order.id) %>">
                 <td>
                     <%= erp_datalist_check_row(id: order.id) %>
                 </td>
@@ -105,7 +105,7 @@
                 </td>
                 <% end %>
                 <% if get_columns(params).include?("created_at") %>
-                <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
+                <td><%= format_date(order.created_at) %></td>
                 <% end %>
                 <td>
                     <%= order_dropdown_actions(order) %>

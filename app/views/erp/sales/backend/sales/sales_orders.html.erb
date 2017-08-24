@@ -66,21 +66,13 @@
     ],
     actions: [
         {
-            text: '<i class="icon-refresh"></i> '+t('.extend_debt_deadline'),
-            url: '',
-            data_method: 'PUT'
-        },
-        {
-            divider: true
-        },
-        {
-            text: '<i class="fa fa-check"></i> '+t('.set_confirmed'),
+            text: '<i class="fa fa-check-square-o"></i> '+t('.set_confirmed'),
             url: erp_orders.set_confirmed_all_backend_orders_path,
             data_method: 'PUT',
             data_confirm: t('.set_confirmed_confirm')
         },
         {
-            text: '<i class="fa fa-ban"></i> '+t('.set_deleted'),
+            text: '<i class="fa fa-close"></i> '+t('.set_deleted'),
             url: erp_orders.set_deleted_all_backend_orders_path,
             data_method: 'PUT',
             data_confirm: t('.set_deleted_confirm')
@@ -89,15 +81,14 @@
             divider: true
         },
         {
-            text: '<i class="fa fa-trash"></i> '+t('.delete'),
-            url: erp_orders.delete_all_backend_orders_path,
-            data_method: 'DELETE',
-            data_confirm: t('.delete_confirm')
-        }
+            text: '<i class="icon-refresh"></i> '+t('.extend_debt_deadline'),
+            url: '',
+            data_method: 'PUT'
+        },
     ],
     filters: [
         {
-            text: t('.draft'), name: 'status', value: Erp::Orders::Order::STATUS_DRAFT, checked: false
+            text: t('.draft'), name: 'status', value: Erp::Orders::Order::STATUS_DRAFT, checked: true
         },
         {
             text: t('.confirmed'), name: 'status', value: Erp::Orders::Order::STATUS_CONFIRMED, checked: false
