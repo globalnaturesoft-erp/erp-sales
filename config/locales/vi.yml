@@ -11,7 +11,7 @@ vi:
       backend:
         sales:
           sales_orders:
-            create_customer_order: "Tạo đơn bán hàng"
+            create_customer_order: "Thêm đơn bán hàng"
             orders: "Đơn bán hàng"
             order_code: "Mã đơn hàng"
             order_date: "Ngày đặt hàng"
@@ -38,10 +38,10 @@ vi:
             set_deleted_confirm: "Bạn thực sự muốn hủy đơn hàng?"
             delete: "Xóa đơn hàng"
             delete_confirm: "Bạn chắc chắn muốn xóa đơn hàng này?"
-            order_from_date: "Ngày đặt hàng"
-            order_to_date: "Ngày đặt hàng"
-            select_from_date: "Từ ngày..."
-            select_to_date: "Đến ngày..."
+            order_from_date: "Từ ngày"
+            order_to_date: "Đến ngày"
+            select_from_date: "Lọc đặt hàng từ ngày..."
+            select_to_date: "Lọc đặt hàng đến ngày..."
             filter_customer: "Khách hàng"
             choose_customer: "Lọc theo khách hàng"
             filter_warehouse: "Kho xuất bán"

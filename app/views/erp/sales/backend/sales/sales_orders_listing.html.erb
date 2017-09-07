@@ -9,11 +9,6 @@
                     <%= t('.order_code') %>
                 </th>
             <% end %>
-            <% if get_columns(params).include?("order_date") %>
-                <th class="sortable" sort-by='erp_orders_orders.order_date'>
-                    <%= t('.order_date') %>
-                </th>
-            <% end %>
             <% if get_columns(params).include?("customer") %>
                 <th>
                     <%= t('.customer') %>
@@ -27,6 +22,11 @@
             <% if get_columns(params).include?("remain") %>
                 <th>
                     <%= t('.remain') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("order_date") %>
+                <th class="sortable" sort-by='erp_orders_orders.order_date'>
+                    <%= t('.order_date') %>
                 </th>
             <% end %>
             <% if get_columns(params).include?("deadline") %>
@@ -69,9 +69,6 @@
                     <strong><%= order.code %></strong>
                 </td>
                 <% end %>
-                <% if get_columns(params).include?("order_date") %>
-                <td><%= format_date(order.order_date) %></td>
-                <% end %>
                 <% if get_columns(params).include?("customer") %>
                 <td><%= order.customer_name %></td>
                 <% end %>
@@ -81,12 +78,16 @@
                 <% if get_columns(params).include?("remain") %>
                 <td><%= format_price(order.remain_amount) %></td>
                 <% end %>
+                <% if get_columns(params).include?("order_date") %>
+                <td><%= format_date(order.order_date) %></td>
+                <% end %>
                 <% if get_columns(params).include?("deadline") %>
                 <td><%= format_date(order.get_payment_deadline) %></td>
                 <% end %>
                 <% if get_columns(params).include?("status") %>
                 <td>
                     <%= status_label(order.status) %>
+                    <br>
                     <%= status_label(order.cache_payment_status) %>
                 </td>
                 <% end %>
