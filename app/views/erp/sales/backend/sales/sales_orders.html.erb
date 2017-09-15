@@ -118,7 +118,16 @@
     ],
     filters: [
         {
-            text: t('.draft'), name: 'status', value: Erp::Orders::Order::STATUS_DRAFT, checked: true
+            text: t('.draft'), name: 'status', value: Erp::Orders::Order::STATUS_DRAFT, checked: false
+        },
+        {
+            text: t('.stock_checking'), name: 'status', value: Erp::Orders::Order::STATUS_STOCK_CHECKING, checked: true
+        },
+        {
+            text: t('.stock_checked'), name: 'status', value: Erp::Orders::Order::STATUS_STOCK_CHECKED, checked: true
+        },
+        {
+            text: t('.stock_approved'), name: 'status', value: Erp::Orders::Order::STATUS_STOCK_APPROVED, checked: true
         },
         {
             text: t('.confirmed'), name: 'status', value: Erp::Orders::Order::STATUS_CONFIRMED, checked: true
