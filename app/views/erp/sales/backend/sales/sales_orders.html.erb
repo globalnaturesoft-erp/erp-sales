@@ -39,21 +39,41 @@
         </div>
         <div class="col-md-3">
             <%= erp_form_control("dataselect", {
-                name: 'customer',
-                label: t('.filter_customer'),
-                placeholder: t('.choose_customer'),
-                url: erp_contacts.dataselect_backend_contacts_path(format: 'json', is_customer: true),
-            }) %>
-        </div>
-        <div class="col-md-3">
-            <%= erp_form_control("dataselect", {
                 name: 'warehouse',
                 label: t('.filter_warehouse'),
                 placeholder: t('.choose_warehouse'),
                 url: erp_warehouses.dataselect_backend_warehouses_path(format: 'json'),
             }) %>
         </div>
+        <div class="col-md-3">
+            <%= erp_form_control("dataselect", {
+                name: 'customer',
+                label: t('.filter_customer'),
+                placeholder: t('.choose_customer'),
+                url: erp_contacts.dataselect_backend_contacts_path(format: 'json', is_customer: true),
+            }) %>
+        </div>
     </div>
+    <% if Erp::Core.available?("ortho_k") %>
+        <div class="row top-datalist">
+            <div class="col-md-3">
+                <%= erp_form_control("dataselect", {
+                    name: 'doctor',
+                    label: 'Bác sĩ',
+                    placeholder: 'Tìm theo bác sĩ',
+                    url: erp_contacts.dataselect_backend_contacts_path(format: 'json', is_customer: true, contact_group_id: Erp::Contacts::ContactGroup::GROUP_DOCTOR),
+                }) %>
+            </div>
+            <div class="col-md-3">
+                <%= erp_form_control("dataselect", {
+                    name: 'patient',
+                    label: 'Bệnh nhân',
+                    placeholder: 'Tìm theo bệnh nhân',
+                    url: erp_contacts.dataselect_backend_contacts_path(format: 'json', is_customer: true, contact_group_id: Erp::Contacts::ContactGroup::GROUP_PATIENT),
+                }) %>
+            </div>
+        </div>
+    <% end %>
 <% end %>
 
 <%= erp_datalist(
