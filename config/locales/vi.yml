@@ -76,7 +76,7 @@ vi:
             debt: "Công nợ"
             return_back: "Cần trả lại tiền"
             extend_debt_deadline: "Gia hạn công nợ"
-            view: "Chi tiết hóa đơn"
+            view: "Xem & In"
             edit: "Chỉnh sửa"
             pay_kh: "Hoàn tiền hóa đơn"
             receive_kh: "Thanh toán hóa đơn"

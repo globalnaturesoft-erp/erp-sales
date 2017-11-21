@@ -77,7 +77,7 @@
                 </td>
                 <% end %>
                 <% if get_columns(params).include?("total") %>
-                <td><%= format_price(order.cache_total) %></td>
+                <td class="text-bold"><%= format_price(order.cache_total) %></td>
                 <% end %>
                 <% if get_columns(params).include?("remain") %>
                 <td><%= format_price(order.remain_amount) %></td>
