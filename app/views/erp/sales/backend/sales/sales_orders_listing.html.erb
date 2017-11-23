@@ -66,7 +66,7 @@
                 <% if get_columns(params).include?("order_code") %>
                 <td>
                     <i class="fa fa-plus expand tr-expand-button"></i>
-                    <strong><%= order.code %></strong>
+                    <strong class="text-nowrap"><%= order.code %></strong>
                 </td>
                 <% end %>
                 <% if get_columns(params).include?("customer") %>
