@@ -14,6 +14,11 @@
                     <%= t('.customer') %>
                 </th>
             <% end %>
+            <% if get_columns(params).include?("quantity") %>
+                <th class="">
+                    <%= t('.quantity') %>
+                </th>
+            <% end %>
             <% if get_columns(params).include?("total") %>
                 <th class="sortable" sort-by='erp_orders_orders.cache_total'>
                     <%= t('.total') %>
@@ -75,6 +80,9 @@
                         <%= order.display_customer_info.present? ? "<br/>".html_safe + order.display_customer_info : '' %>
                     <% end %>
                 </td>
+                <% end %>
+                <% if get_columns(params).include?("quantity") %>
+                <td><%= order.items_count %></td>
                 <% end %>
                 <% if get_columns(params).include?("total") %>
                 <td class="text-bold"><%= format_price(order.cache_total) %></td>

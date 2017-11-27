@@ -53,11 +53,13 @@ vi:
             product_code: "Mã SP"
             diameter: "Đường kính"
             category: "Loại SP"
+            quantity: "Số lượng"
           sales_orders_listing:
             order_code: "Mã đơn hàng"
             order_date: "Ngày đặt hàng"
             customer: "Khách hàng"
             employee: "Nhân viên"
+            quantity: "Số lượng"
             total: "Tổng tiền"
             remain: "Tổng nợ"
             debt_deadline: "Hạn thanh toán"
