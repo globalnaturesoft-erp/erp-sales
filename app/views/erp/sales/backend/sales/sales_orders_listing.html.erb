@@ -102,22 +102,30 @@
                 <td><%= format_date(order.get_payment_deadline) %></td>
                 <% end %>
                 <% if get_columns(params).include?("status") %>
-                    <td>
+                <td>
+                    <div>
                         <%= status_label(order.status) %>
-                        <br>
+                    </div>
+                    <div>
                         <%= status_label(order.cache_payment_status) %>
-                    </td>
+                    </div>
+                    <% if order.is_confirmed? %>
+                    <div>
+                        <%= status_label(order.cache_delivery_status) %>
+                    </div>
+                    <% end %>
+                </td>
                 <% end %>
                 <% if Erp::Core.available?('ortho_k') %>
-                    <td class="text-center datalist-ajax-control-box" data-url="<%= erp_ortho_k.change_checking_order_backend_orders_path(id: order.id) %>">
-                        <%= erp_form_control("select_basic", {
-                            class: 'select-inline',
-                            name: '',
-                            value: order.checking_order.to_i,
-                            text: order.checking_order.to_i.to_s,
-                            options: Erp::Orders::Order.checking_order_options
-                        }) if !order.checking_order.nil? %>
-                    </td>
+                <td class="text-center datalist-ajax-control-box" data-url="<%= erp_ortho_k.change_checking_order_backend_orders_path(id: order.id) %>">
+                    <%= erp_form_control("select_basic", {
+                        class: 'select-inline',
+                        name: '',
+                        value: order.checking_order.to_i,
+                        text: order.checking_order.to_i.to_s,
+                        options: Erp::Orders::Order.checking_order_options
+                    }) if !order.checking_order.nil? %>
+                </td>
                 <% end %>
                 <% if get_columns(params).include?("employee") %>
                 <td>
