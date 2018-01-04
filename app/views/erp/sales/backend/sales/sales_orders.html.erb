@@ -22,11 +22,11 @@
 <% end %>
 
 <% content_for :global_filter do %>
-    <% saved_filters = current_user.get_filters[erp_sales.backend_sales_orders_listing_path] %>
+    <% saved_filters = current_user.get_filters(erp_sales.backend_sales_orders_listing_path) %>
     <div class="row top-datalist">
         <div class="col-md-2">
             <%= erp_form_control('date', {
-                value: saved_filters["from_date"].to_date,
+                value: (saved_filters["from_date"].present? ? saved_filters["from_date"].to_date : nil),
                 label: 'Từ ngày',
                 name: 'from_date',
                 placeholder: 'Chọn ngày'
@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-2">
             <%= erp_form_control('date', {
-                value: saved_filters["to_date"].to_date,
+                value: (saved_filters["to_date"].present? ? saved_filters["to_date"].to_date : nil),
                 label: 'Đến ngày',
                 name: 'to_date',
                 placeholder: 'Chọn ngày'
