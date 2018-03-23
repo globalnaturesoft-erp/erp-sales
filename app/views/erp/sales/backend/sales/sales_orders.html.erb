@@ -93,6 +93,17 @@
                     url: erp_contacts.dataselect_backend_contacts_path(format: 'json', is_customer: true, contact_group_id: Erp::Contacts::ContactGroup::GROUP_PATIENT),
                 }) %>
             </div>
+            <div class="col-md-3">
+                <%= erp_form_control("dataselect", {
+                    name: 'patient_state',
+                    label: 'Tình trạng bệnh nhân',
+                    placeholder: 'Tìm theo tình trạng BN',
+                    value: saved_filters["patient_state"],
+                    text: saved_filters["patient_state"].present? ? Erp::OrthoK::PatientState.find(saved_filters["patient_state"]).name : nil,
+                    url: erp_ortho_k.dataselect_backend_patient_states_path(format: 'json'),
+                    multiple: true
+                }) %>
+            </div>
         </div>
     <% end %>
 <% end %>
