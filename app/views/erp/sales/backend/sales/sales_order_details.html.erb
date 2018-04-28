@@ -74,6 +74,7 @@
                                 <th class="bg-yellow bg-font-yellow text-nowrap text-right">Số lượng</th>
                                 <th class="bg-yellow bg-font-yellow text-nowrap text-center">Hàng đang có sẵn</th>
                                 <th class="bg-yellow bg-font-yellow text-nowrap text-left">Hàng thay thế</th>
+                                <th class="bg-yellow bg-font-yellow text-nowrap text-left">Số lô</th>
                                 <th width="20%" class="bg-yellow bg-font-yellow text-nowrap text-left">Ghi chú</th>
                             </tr>
                         </thead>
@@ -86,7 +87,7 @@
                                 <td class="text-right"><%= scheck_detail.order_detail.quantity %></td>
                                 <td class="text-center">
                                     <%= raw scheck_detail.available? ? '<i class="fa fa-check font-green-jungle"></i>' : '<i class="fa fa-close font-red-thunderbird"></i>' %>
-                                </td>
+                                </td>                                
                                 <td class="text-left">
                                     <table width="100%">
                                         <% scheck_detail.get_alternative_items.each do |item| %>
@@ -97,6 +98,7 @@
                                         <% end %>
                                     </table>
                                 </td>
+                                <td class="text-left"><%= scheck_detail.serials %></td>
                                 <td class="text-left"><%= scheck_detail.note %></td>
                             </tr>
                             <% end %>
