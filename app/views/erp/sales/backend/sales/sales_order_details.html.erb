@@ -16,6 +16,13 @@
                 </a>
             </li>
         <% end %>
+        
+        <li>
+            <a href="#tab_<%= tabid %>_3" data-toggle="tab">
+                <i class="fa fa-history"></i>
+                <%= 'Lịch sử giao hàng' %>
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab_<%= tabid %>_1">
@@ -23,8 +30,9 @@
                 <table class="table table-bordered table-advance order-column">
                     <thead class="flip-content">
                         <tr>
-                            <th class="text-left bg-yellow bg-font-yellow text-nowrap" width="20%">Tên hàng</th>
+                            <th class="text-left bg-yellow bg-font-yellow text-nowrap" width="20%">Tên sản phẩm</th>
                             <th class="bg-yellow bg-font-yellow text-nowrap">ĐVT</th>
+                            <th class="bg-yellow bg-font-yellow text-nowrap">Kho đặt</th>
                             <th class="text-right bg-yellow bg-font-yellow text-nowrap">Giá bán<sup>(1)</sup></th>
                             <th class="text-right bg-yellow bg-font-yellow text-nowrap">Số lượng<sup>(2)</sup></th>
                             <th class="text-right bg-yellow bg-font-yellow text-nowrap" title="(3) = (1) x (2)">Thành tiền<sup>(3)</sup></th>
@@ -36,7 +44,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="bg-green" colspan="3"><strong> TỔNG CỘNG </strong></td>
+                            <td class="bg-green" colspan="4"><strong> TỔNG CỘNG </strong></td>
                             <td class="bg-green text-right"><strong><%= @order.items_count %></strong></td>
                             <td class="bg-green text-right"><strong><%= format_price(@order.subtotal) %></strong></td>
                             <td class="bg-green text-right"><strong><%= @order.discount_amount == 0 ? '' : format_price(@order.discount_amount) %></strong></td>
@@ -48,6 +56,7 @@
                             <tr>
                                 <td class="text-left"><strong><%= order_detail.product_name %></strong></td>
                                 <td class="text-left"><%= order_detail.product_unit_name %></td>
+                                <td class="text-left"><%= order_detail.warehouse_name %></td>
                                 <td class="text-right"><%= format_price(order_detail.price) %></td>
                                 <td class="text-right"><%= format_number(order_detail.quantity) %></td>
                                 <td class="text-right"><%= format_price(order_detail.subtotal) %></td>
@@ -68,7 +77,7 @@
                     <table class="table table-bordered table-advance order-column">
                         <thead class="flip-content">
                             <tr>
-                                <th class="text-left bg-yellow bg-font-yellow text-nowrap" width="20%">Tên hàng</th>
+                                <th class="text-left bg-yellow bg-font-yellow text-nowrap" width="20%">Tên sản phẩm</th>
                                 <th class="bg-yellow bg-font-yellow text-nowrap">Đơn vị tính</th>
                                 <th class="bg-yellow bg-font-yellow text-nowrap text-right">Giá bán</th>
                                 <th class="bg-yellow bg-font-yellow text-nowrap text-right">Số lượng</th>
@@ -107,5 +116,90 @@
                 </div>
             </div>
         <% end %>
+        
+        <div class="tab-pane" id="tab_<%= tabid %>_3">
+            <div class="table-scrollable">
+                <table class="table table-bordered table-striped flip-content table-child-content">
+                    <thead class="flip-content">
+                        <tr>
+                            <% if !Erp::Core.available?("ortho_k") %>
+                                <th width="15%" class="bg-yellow bg-font-yellow text-nowrap text-center"><%= 'Mã sản phẩm' %></th>
+                                <th class="bg-yellow bg-font-yellow text-nowrap text-left"><%= 'Tên sản phẩm' %></th>
+                                <th class="bg-yellow bg-font-yellow text-nowrap text-left"><%= 'Loại' %></th>
+                            <% else %>
+                                <th width="20%" class="bg-yellow bg-font-yellow text-nowrap text-left"><%= 'Tên sản phẩm' %></th>
+                            <% end %>
+                            <th class="bg-yellow bg-font-yellow text-nowrap text-center"><%= 'ĐVT' %></th>
+                            <th class="bg-yellow bg-font-yellow text-nowrap text-center"><%= 'Kho đặt' %></th>
+                            <th class="bg-yellow bg-font-yellow text-nowrap text-center"><%= 'Kho xuất' %></th>
+                            <th class="bg-yellow bg-font-yellow text-nowrap text-center"><%= 'SL đặt' %></th>
+                            <th class="bg-yellow bg-font-yellow text-nowrap text-center"><%= 'SL đã giao' %></th>
+                            <th class="bg-yellow bg-font-yellow text-nowrap text-center"><%= 'SL còn lại' %></th>
+                            <th class="bg-yellow bg-font-yellow text-nowrap text-center"><%= t('status') %></th>
+                            <th class="bg-yellow bg-font-yellow text-nowrap text-center"><%= 'Phiếu giao hàng' %></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @order.order_details.each do |order_detail| %>
+                            <% if order_detail.delivered_delivery_details.count > 0 %>
+                                <tr class="odd gradeX has-child-table" data-url="<%= erp_qdeliveries.backend_deliveries_sales_path(id: order_detail.id) %>">
+                            <% else %>
+                                <tr>
+                            <% end %>
+                                <% if !Erp::Core.available?("ortho_k") %>
+                                    <td class="text-left">
+                                        <% if order_detail.delivered_delivery_details.count > 0 %>
+                                            <i class="fa fa-plus expand tr-expand-button child-tr-expand-button"></i>
+                                        <% end %>
+                                        <strong><%= order_detail.product_code %></strong>
+                                    </td>
+                                    <td class="text-left">
+                                        <%= link_to order_detail.product_name,
+                                            erp_products.edit_backend_product_path(order_detail.product),
+                                            target: "_blank", title: order_detail.product_name,
+                                            class: "font-yellow-gold sbold" %>
+                                    </td>
+                                    <td class="text-left"><%= order_detail.product_category_name %></td>
+                                <% else %>
+                                    <td class="text-left">
+                                        <% if order_detail.delivered_delivery_details.count > 0 %>
+                                            <i class="fa fa-plus expand tr-expand-button child-tr-expand-button"></i>
+                                        <% end %>
+                                        <strong>
+                                            <%= backend_product_link(order_detail.product) %>
+                                        </strong>
+                                    </td>
+                                <% end %>
+                                <td class="text-center"><%= order_detail.product_unit_name %></td>
+                                <td class="text-center"><%= order_detail.warehouse_name %></td>
+                                <td class="text-center"><%= order_detail.get_delivery_warehouse_export.present? ? order_detail.get_delivery_warehouse_export : '--' %></td>
+                                <td class="numeric text-center bold"><%= format_number(order_detail.quantity) %></td>
+                                <td class="numeric text-center bold"><%= format_number(order_detail.delivered_quantity) %></td>
+                                <td class="numeric text-center bold"><%= format_number(order_detail.not_delivered_quantity) %></td>
+                                <td class="text-center">
+                                    <% if order_detail.not_delivered_quantity > 0 %>
+                                        <span class="font-yellow-gold">Chưa giao xong</span>
+                                    <% elsif order_detail.not_delivered_quantity == 0 %>
+                                        <span class="font-green-meadow">Đã giao xong</span>
+                                    <% else %>
+                                        <span class="font-red-thunderbird">Giao bị dư</span>
+                                    <% end %>
+                                </td>
+                                <td class="text-center">
+                                    <% if order_detail.delivered_delivery_details.count > 0 %>
+                                        <% order_detail.delivered_delivery_details.each do |delivery_detail| %>
+                                            <%= qdelivery_link(delivery_detail.delivery) %>
+                                            <br>
+                                        <% end %>
+                                    <% else %>
+                                        --
+                                    <% end %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div
