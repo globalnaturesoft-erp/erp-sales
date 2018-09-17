@@ -14,11 +14,13 @@
 <% end %>
 
 <% content_for :page_toolbar do %>
-    <%= erp_component('button/create', {
-        text: t('.create_customer_order'),
-        href: erp_orders.new_backend_order_path(type: Erp::Orders::Order::TYPE_SALES_ORDER),
-        class: 'btn-noborder'
-    }) %>
+    <% if can? :sales_sales_orders_create, nil %>
+        <%= erp_component('button/create', {
+            text: t('.create_customer_order'),
+            href: erp_orders.new_backend_order_path(type: Erp::Orders::Order::TYPE_SALES_ORDER),
+            class: 'btn-noborder'
+        }) %>
+    <% end %>
 <% end %>
 
 <% content_for :global_filter do %>
