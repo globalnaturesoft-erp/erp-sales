@@ -101,7 +101,12 @@
                 <td><%= format_price(order.remain_amount) %></td>
                 <% end %>
                 <% if get_columns(params).include?("order_date") %>
-                <td><%= format_date(order.order_date) %></td>
+                <td>
+                    <%= format_date(order.order_date) %>
+                    <% if order.is_confirmed? and order.confirmed_at.present? %>
+                        <i class="fa fa-clock-o" title="Đã xác nhận lúc: <%= format_datetime(order.confirmed_at) %>"></i>
+                    <% end %>
+                </td>
                 <% end %>
                 <% if get_columns(params).include?("deadline") %>
                 <td><%= format_date(order.get_payment_deadline) %></td>
@@ -150,7 +155,10 @@
                 </td>
                 <% end %>
                 <% if get_columns(params).include?("created_at") %>
-                <td><%= format_date(order.created_at) %></td>
+                <td>
+                    <%= format_date(order.created_at) %>
+                    <i class="fa fa-clock-o" title="Cập nhật lần cuối lúc: <%= format_datetime(order.updated_at) %>"></i>
+                </td>
                 <% end %>
                 <td>
                     <%= order_dropdown_actions(order) %>
