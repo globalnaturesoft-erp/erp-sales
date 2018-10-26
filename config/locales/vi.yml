@@ -81,7 +81,7 @@ vi:
             return_back: "Cần trả lại tiền"
             delivered: "Đã giao xong"
             not_delivery: "Chưa giao xong"
-            over_delivered: "Giao dư"
+            over_delivered: "Giao bị dư"
             extend_debt_deadline: "Gia hạn công nợ"
             view: "Xem & In"
             edit: "Chỉnh sửa"
@@ -100,3 +100,6 @@ vi:
           sales_order_details:
             order_details: "Chi tiết đơn hàng"
             order_stock_check_details: "Chi tiết kiểm tra kho"
+            not_delivery: "Chưa giao xong"
+            delivered: "Đã giao xong"
+            over_delivered: "Giao bị dư"

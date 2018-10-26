@@ -179,13 +179,7 @@
                                 <td class="numeric text-center bold"><%= format_number(order_detail.delivered_quantity) %></td>
                                 <td class="numeric text-center bold"><%= format_number(order_detail.not_delivered_quantity) %></td>
                                 <td class="text-center">
-                                    <% if order_detail.not_delivered_quantity > 0 %>
-                                        <span class="font-yellow-gold">Chưa giao xong</span>
-                                    <% elsif order_detail.not_delivered_quantity == 0 %>
-                                        <span class="font-green-meadow">Đã giao xong</span>
-                                    <% else %>
-                                        <span class="font-red-thunderbird">Giao bị dư</span>
-                                    <% end %>
+                                    <%= status_label(order_detail.cache_delivery_status) %>
                                 </td>
                                 <td class="text-center">
                                     <% if order_detail.delivered_delivery_details.count > 0 %>
