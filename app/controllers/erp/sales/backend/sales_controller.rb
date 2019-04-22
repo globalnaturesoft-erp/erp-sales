@@ -11,7 +11,17 @@ module Erp
         def sales_orders_listing
           authorize! :sales_sales_orders_index, nil
           
-          @orders = Erp::Orders::Order.sales_orders.search(params).paginate(:page => params[:page], :per_page => 10)
+          @orders = Erp::Orders::Order.sales_orders.search(params)
+          
+          if can? :sales_sales_orders_list_all, nil
+            @orders = @orders
+          end
+          
+          if can? :sales_sales_orders_list_own, nil
+            @orders = @orders.where(employee_id: current_user.id)
+          end
+          
+          @orders = @orders.paginate(:page => params[:page], :per_page => 10)
           
           render layout: nil
         end
