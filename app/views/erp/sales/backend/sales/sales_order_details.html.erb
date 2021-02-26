@@ -34,6 +34,7 @@
                             <th class="bg-yellow bg-font-yellow text-nowrap">ĐVT</th>
                             <th class="bg-yellow bg-font-yellow text-nowrap">Kho đặt</th>
                             <th class="text-center bg-yellow bg-font-yellow text-nowrap">Số lô</th>
+                            <th class="text-center bg-yellow bg-font-yellow text-nowrap">MT/MP</th>
                             <th class="text-right bg-yellow bg-font-yellow text-nowrap">Giá bán<sup>(1)</sup></th>
                             <th class="text-right bg-yellow bg-font-yellow text-nowrap">Số lượng<sup>(2)</sup></th>
                             <th class="text-right bg-yellow bg-font-yellow text-nowrap" title="(3) = (1) x (2)">Thành tiền<sup>(3)</sup></th>
@@ -45,7 +46,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="bg-green" colspan="5"><strong> TỔNG CỘNG </strong></td>
+                            <td class="bg-green" colspan="6"><strong> TỔNG CỘNG </strong></td>
                             <td class="bg-green text-right"><strong><%= @order.items_count %></strong></td>
                             <td class="bg-green text-right"><strong><%= format_price(@order.subtotal) %></strong></td>
                             <td class="bg-green text-right"><strong><%= @order.discount_amount == 0 ? '' : format_price(@order.discount_amount) %></strong></td>
@@ -59,6 +60,7 @@
                                 <td class="text-left"><%= order_detail.product_unit_name %></td>
                                 <td class="text-left"><%= order_detail.warehouse_name %></td>
                                 <td class="text-left"><%= order_detail.serials %></td>
+                                <td class="text-left"><%= order_detail.display_eye_position %></td>
                                 <td class="text-right"><%= format_price(order_detail.price) %></td>
                                 <td class="text-right"><%= format_number(order_detail.quantity) %></td>
                                 <td class="text-right"><%= format_price(order_detail.subtotal) %></td>
