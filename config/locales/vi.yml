@@ -35,6 +35,8 @@ vi:
             overdue: "Chưa thanh toán"
             debt: "Đang công nợ"
             return_back: "Cần trả lại tiền"
+            delivered: "Đã giao xong"
+            not_delivery: "Chưa giao xong"
             extend_debt_deadline: "Gia hạn công nợ"
             set_confirmed: "Xác nhận"
             set_deleted: "Hủy đơn hàng"
